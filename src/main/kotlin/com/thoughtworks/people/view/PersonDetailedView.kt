@@ -17,7 +17,12 @@ fun renderDetailedView(person: Person): String =
                     div(classes = "header") {
                         h1 {
                             img(src = person.avatartUrl) { height = "48"; width = "48"}
-                            + if (Period.between(LocalDate.now(), person.birthDate).years > 40) "Mr./Mrs. " else ""
+                            + if (Period.between(LocalDate.now(), person.birthDate).years > 40)
+                                when (person.sex) {
+                                    Person.Sex.MAN -> "Mr"
+                                    Person.Sex.WOMAN -> "Mrs"
+                                }
+                            else {""}
                             + "${person.firstName} ${person.secondName}"
                         }
                     }
