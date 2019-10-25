@@ -55,9 +55,7 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
-//	testImplementation("io.kotlintest:kotlintest-extensions-spring:3.4.2")
-
-
+	testCompile("io.mockk:mockk:1.9.3")
 }
 
 tasks.withType<Test> {
