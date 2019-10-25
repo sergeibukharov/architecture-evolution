@@ -1,7 +1,8 @@
 package com.thoughtworks.people.service
 
+import com.thoughtworks.people.business.Person
 import com.thoughtworks.people.fake.InMemoryRepository
-import com.thoughtworks.people.model.Person
+import com.thoughtworks.people.persistence.model.PersonEntity
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.time.LocalDate

@@ -1,7 +1,8 @@
 package com.thoughtworks.people.service
 
-import com.thoughtworks.people.model.Person
-import com.thoughtworks.people.repository.PersonRepository
+import com.thoughtworks.people.business.Person
+import com.thoughtworks.people.persistence.model.PersonEntity
+import com.thoughtworks.people.persistence.repository.PersonRepository
 import com.thoughtworks.people.utils.GeneratedAvatar
 import com.thoughtworks.people.utils.GeneratedQuote
 import com.thoughtworks.people.utils.toNullable
@@ -24,12 +25,16 @@ class PersonsService(
                 avatartUrl = "https://avatars.dicebear.com/v2/male/my-somffething.svg",
                 favoriteQuote = "make the easy things easy, and the hard things possible"
         )
-        return repository.save(me)
+        return repository
+                .save(PersonEntity.fromBusiness(me))
+                .let { PersonEntity.toBusiness(it) }
     }
 
     fun get(id: UUID): Person? =
             repository
-            .findById(id).toNullable()
+            .findById(id)
+                    .toNullable()
+                    ?.let { PersonEntity.toBusiness(it) }
 
     fun createNewPerson(personInput: PersonInput): Person {
         val inputSex = when(personInput.gender.toLowerCase()) {
@@ -49,7 +54,9 @@ class PersonsService(
                 favoriteQuote = GeneratedQuote().get()
         )
 
-        return repository.save(generatedPerson)
+        return repository
+                .save(PersonEntity.fromBusiness(generatedPerson))
+                .let { PersonEntity.toBusiness(it) }
     }
 
 }
