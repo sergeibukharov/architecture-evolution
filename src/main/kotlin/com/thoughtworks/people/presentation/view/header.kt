@@ -1,4 +1,4 @@
-package com.thoughtworks.people.view
+package com.thoughtworks.people.presentation.view
 
 import kotlinx.html.HTML
 import kotlinx.html.head

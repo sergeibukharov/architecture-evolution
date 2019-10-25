@@ -1,9 +1,10 @@
-package com.thoughtworks.people.controller
+package com.thoughtworks.people.presentation.controller
 
+import com.thoughtworks.people.presentation.model.PersonRespectfullViewModel
 import com.thoughtworks.people.service.PersonInput
 import com.thoughtworks.people.service.PersonsService
-import com.thoughtworks.people.view.personDetailsForm
-import com.thoughtworks.people.view.renderDetailedView
+import com.thoughtworks.people.presentation.view.personDetailsForm
+import com.thoughtworks.people.presentation.view.renderDetailedView
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -24,7 +25,7 @@ class PeopleController(
     @ResponseBody
     fun me(): String {
         val me = personService.me()
-        return renderDetailedView(person = me)
+        return renderDetailedView(person = PersonRespectfullViewModel(me))
     }
 
     @RequestMapping(value = ["/id/{id}"])
@@ -38,7 +39,9 @@ class PeopleController(
         val person = personService.get(idUUD)
                 ?: return ResponseEntity.badRequest().build()
 
-        return ResponseEntity.ok(renderDetailedView(person))
+        return ResponseEntity.ok(
+                renderDetailedView(PersonRespectfullViewModel(person))
+        )
     }
 
     @RequestMapping(value = ["/generate"], method = [RequestMethod.GET])
