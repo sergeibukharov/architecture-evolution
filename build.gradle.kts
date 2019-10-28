@@ -49,6 +49,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+	implementation(project(":presentation"))
+	implementation(project(":persistence"))
+	implementation(project(":useCasePeople"))
 	implementation(project(":businessPeople"))
 
 	// tools
@@ -56,9 +59,6 @@ dependencies {
 
 	// dev tools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-
-	// view
-	implementation( "org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.12")
 
 	//persistance
 	runtimeOnly("com.h2database:h2")

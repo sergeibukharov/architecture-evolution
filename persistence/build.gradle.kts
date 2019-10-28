@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     id("io.spring.dependency-management")
+    id("org.jetbrains.kotlin.plugin.jpa")
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
