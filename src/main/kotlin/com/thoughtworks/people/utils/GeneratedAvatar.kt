@@ -1,6 +1,6 @@
 package com.thoughtworks.people.utils
 
-import com.thoughtworks.people.business.Person
+import com.thoughtworks.people.businessPeople.Person
 import com.thoughtworks.people.persistence.model.PersonEntity
 import java.util.*
 

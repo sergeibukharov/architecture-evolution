@@ -1,6 +1,6 @@
 package com.thoughtworks.people.service
 
-import com.thoughtworks.people.business.Person
+import com.thoughtworks.people.businessPeople.Person
 import com.thoughtworks.people.persistence.model.PersonEntity
 import com.thoughtworks.people.persistence.repository.PersonRepository
 import com.thoughtworks.people.utils.GeneratedAvatar

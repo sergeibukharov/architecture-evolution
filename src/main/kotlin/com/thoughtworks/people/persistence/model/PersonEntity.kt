@@ -1,6 +1,6 @@
 package com.thoughtworks.people.persistence.model
 
-import com.thoughtworks.people.business.Person
+import com.thoughtworks.people.businessPeople.Person
 import java.time.LocalDate
 import java.util.*
 import javax.persistence.Entity
