@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	kotlin("jvm") version "1.3.50"
 	kotlin("plugin.spring") version "1.3.50"
-	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.50"
+	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.50" apply false
 }
 
 allprojects {
@@ -54,15 +54,11 @@ dependencies {
 	implementation(project(":useCasePeople"))
 	implementation(project(":businessPeople"))
 
-	// tools
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
 	// dev tools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	//persistance
 	runtimeOnly("com.h2database:h2")
-	implementation("javax.persistence:javax.persistence-api:2.2")
 
 	// tests
 	testCompile("org.junit.jupiter:junit-jupiter-api:5.5.2")
@@ -70,9 +66,6 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
-	testCompile("io.mockk:mockk:1.9.3")
-
-	implementation("javax.inject:javax.inject:1")
 }
 
 tasks.test {
