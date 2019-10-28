@@ -71,6 +71,8 @@ dependencies {
 	}
 	testImplementation("io.projectreactor:reactor-test")
 	testCompile("io.mockk:mockk:1.9.3")
+
+	implementation("javax.inject:javax.inject:1")
 }
 
 tasks.test {

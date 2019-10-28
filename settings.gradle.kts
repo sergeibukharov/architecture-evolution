@@ -14,3 +14,6 @@ pluginManagement {
 }
 rootProject.name = "people"
 include(":businessPeople")
+include(":presentation")
+include(":useCasePeople")
+include(":persistence")
