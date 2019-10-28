@@ -49,7 +49,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-//	implementation(project("businessPeople"))
+	implementation(project(":businessPeople"))
 
 	// tools
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
