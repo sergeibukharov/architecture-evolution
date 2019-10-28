@@ -11,3 +11,5 @@ MVC is separated layer which responsible only for presentation
 Service is still responsible for all the business logic
 
 4. MVC -> Service -> Business -> Persistence
+
+5. Clean architecture

@@ -8,8 +8,26 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.50"
 }
 
-group = "com.thoughtworks"
-version = "0.0.1-SNAPSHOT"
+allprojects {
+	group = "com.thoughtworks"
+	version = "0.0.1-SNAPSHOT"
+
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven { url = uri("https://repo.spring.io/milestone") }
+		maven { url = uri("https://repo.spring.io/snapshot") }
+	}
+
+	tasks.withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "1.8"
+		}
+	}
+
+}
+
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 val developmentOnly by configurations.creating
@@ -19,12 +37,7 @@ configurations {
 	}
 }
 
-repositories {
-	mavenCentral()
-	jcenter()
-	maven { url = uri("https://repo.spring.io/milestone") }
-	maven { url = uri("https://repo.spring.io/snapshot") }
-}
+
 
 dependencies {
 	// spring modules
@@ -58,13 +71,6 @@ dependencies {
 	testCompile("io.mockk:mockk:1.9.3")
 }
 
-tasks.withType<Test> {
+tasks.test {
 	useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
-	}
 }

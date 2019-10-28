@@ -13,3 +13,4 @@ pluginManagement {
     }
 }
 rootProject.name = "people"
+include(":businessPeople")
