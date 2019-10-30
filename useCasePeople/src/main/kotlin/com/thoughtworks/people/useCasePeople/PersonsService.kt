@@ -1,8 +1,6 @@
 package com.thoughtworks.people.useCasePeople
 
-import com.thoughtworks.people.businessPeople.GetPerson
-import com.thoughtworks.people.businessPeople.PersistPerson
-import com.thoughtworks.people.businessPeople.Person
+import com.thoughtworks.people.businessPeople.*
 import java.time.LocalDate
 import java.util.*
 import javax.inject.Named
@@ -10,7 +8,8 @@ import javax.inject.Named
 @Named
 class PersonsService(
         private val getPerson: GetPerson,
-        private val persistPerson: PersistPerson
+        private val persistPerson: PersistPerson,
+        private val personGenerator: PersonGenerator
 ) {
 
     fun me(): Person {
@@ -36,15 +35,22 @@ class PersonsService(
             else -> Person.Sex.MAN
         }
 
-        val generatedPerson = Person(
+//        val generatedPerson = Person(
+//                firstName = personInput.firstName,
+//                secondName = personInput.secondName,
+//                birthDate = LocalDate.parse(personInput.birthDate),
+//                sex = inputSex,
+//                avatartUrl = GeneratedAvatar(
+//                        sex = inputSex,
+//                        uniqueValue = personInput.firstName + personInput.secondName).toUrl(),
+//                favoriteQuote = GeneratedQuote().get()
+//        )
+//
+        val generatedPerson = personGenerator.generate(
                 firstName = personInput.firstName,
                 secondName = personInput.secondName,
                 birthDate = LocalDate.parse(personInput.birthDate),
-                sex = inputSex,
-                avatartUrl = GeneratedAvatar(
-                        sex = inputSex,
-                        uniqueValue = personInput.firstName + personInput.secondName).toUrl(),
-                favoriteQuote = GeneratedQuote().get()
+                sex = inputSex
         )
 
         persistPerson.persist(generatedPerson)

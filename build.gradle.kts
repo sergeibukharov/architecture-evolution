@@ -53,6 +53,7 @@ dependencies {
 	implementation(project(":persistence"))
 	implementation(project(":useCasePeople"))
 	implementation(project(":businessPeople"))
+	implementation(project(":quoteGarden"))
 
 	// dev tools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
