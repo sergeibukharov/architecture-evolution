@@ -5,7 +5,8 @@ import javax.inject.Named
 
 @Named
 class PersonGenerator(
-        private val quoteProvider: QuotesProvider
+        private val quoteProvider: QuotesProvider,
+        private val avatarProvider: AvatarProvider
 ) {
 
     fun generate(
@@ -19,7 +20,9 @@ class PersonGenerator(
                     secondName = secondName,
                     birthDate = birthDate,
                     sex = sex,
-                    favoriteQuote = quoteProvider.randomQuote(),
-                    avatartUrl = ""
-            )
+                    favoriteQuote = quoteProvider.randomQuote()
+            ).also {
+                val pictureUrl = avatarProvider.createForPerson(it)
+                it.changeAvatar(pictureUrl)
+            }
 }

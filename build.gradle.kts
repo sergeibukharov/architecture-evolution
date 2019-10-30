@@ -54,6 +54,7 @@ dependencies {
 	implementation(project(":useCasePeople"))
 	implementation(project(":businessPeople"))
 	implementation(project(":quoteGarden"))
+	implementation(project(":avatarsDicebear"))
 
 	// dev tools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
