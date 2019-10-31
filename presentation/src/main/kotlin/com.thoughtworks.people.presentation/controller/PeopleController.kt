@@ -3,8 +3,7 @@ package com.thoughtworks.people.presentation.controller
 import com.thoughtworks.people.presentation.model.PersonRespectfullViewModel
 import com.thoughtworks.people.presentation.view.personDetailsForm
 import com.thoughtworks.people.presentation.view.renderDetailedView
-import com.thoughtworks.people.useCasePeople.PersonCreationSummary
-import com.thoughtworks.people.useCasePeople.PersonsService
+import com.thoughtworks.people.useCasePeople.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -18,14 +17,15 @@ import java.util.*
 
 @Controller
 class PeopleController(
-        val personService: PersonsService
+        val getPerson: GetPersonUseCase,
+        val createNew: CreateNewPersonUseCase,
+        val getMe: MeUseCase
 ) {
 
     @RequestMapping(value = ["/me"], method = [RequestMethod.GET])
     @ResponseBody
     fun me(): String {
-        val me = personService.me()
-        return renderDetailedView(person = PersonRespectfullViewModel(me))
+        return renderDetailedView(person = PersonRespectfullViewModel(getMe()))
     }
 
     @RequestMapping(value = ["/id/{id}"])
@@ -36,7 +36,7 @@ class PeopleController(
             return ResponseEntity.badRequest().build()
         }
 
-        val person = personService.get(idUUD)
+        val person = getPerson(idUUD)
                 ?: return ResponseEntity.badRequest().build()
 
         return ResponseEntity.ok(
@@ -56,7 +56,7 @@ class PeopleController(
             consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE])
     @ResponseBody
     fun create(personInput: PersonCreationSummary): ResponseEntity<String>{
-        val generatedPerson = personService.createNewPerson(personInput)
+        val generatedPerson = createNew(personInput)
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
