@@ -56,6 +56,8 @@ dependencies {
 	implementation(project(":quoteGarden"))
 	implementation(project(":avatarsDicebear"))
 
+	implementation("guru.nidi:jdepend:2.9.5")
+
 	// dev tools
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
